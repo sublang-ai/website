@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
+
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 

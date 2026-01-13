@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "website",

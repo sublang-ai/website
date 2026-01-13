@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> -->
+
 # Astro Starter Kit: Blog
 
 ```sh

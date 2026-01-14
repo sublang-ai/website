@@ -19,41 +19,55 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
+				max-width: var(--grid-max);
+				margin: 0 auto;
+				padding: 4.5rem 2rem 6rem;
 			}
-			.hero-image {
-				width: 100%;
+			.article {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				padding: 2.6rem;
+				box-shadow: var(--shadow-soft);
 			}
 			.hero-image img {
 				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				width: 100%;
+				border-radius: var(--radius-md);
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				max-width: 720px;
+				margin: 2rem auto 0;
+				color: var(--ink-soft);
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
+				margin-bottom: 1.5rem;
+				line-height: 1.1;
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
+				margin: 0.8rem 0 0.5rem 0;
 			}
 			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				display: flex;
+				flex-direction: column;
+				gap: 0.25rem;
+				color: var(--ink-muted);
+				font-size: 0.9rem;
+				text-transform: uppercase;
+				letter-spacing: 0.2em;
+				font-family: var(--font-display);
 			}
 			.last-updated-on {
 				font-style: italic;
+				letter-spacing: 0.1em;
+			}
+			@media (max-width: 720px) {
+				main {
+					padding: 3.5rem 1.2rem 4rem;
+				}
+				.article {
+					padding: 1.8rem;
+				}
 			}
 		</style>
 	</head>
@@ -61,10 +75,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
+			<article class="article">
+				{heroImage && (
+					<div class="hero-image">
+						<Image width={1020} height={510} src={heroImage} alt="" />
+					</div>
+				)}
 				<div class="prose">
 					<div class="title">
 						<div class="date">

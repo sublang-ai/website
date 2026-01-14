@@ -4,6 +4,7 @@
 title: 'GEARS: the AI-Ready Spec Syntax'
 description: 'An introduction to GEARS, the specification syntax designed for AI-assisted development'
 pubDate: 2026-01-14
+categories: ['engineering']
 ---
 
 Coming soon.

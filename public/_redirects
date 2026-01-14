@@ -4,3 +4,7 @@
 # Temporary redirect: home page to GitHub (302 preserves SEO for sublang.xyz)
 /  https://github.com/sublang-xyz  302
 /index.html  https://github.com/sublang-xyz  302
+
+# Redirect old blog URLs to engineering
+/blog  /engineering  301
+/blog/*  /engineering  301

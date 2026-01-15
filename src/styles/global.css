@@ -1,8 +1,6 @@
 /* SPDX-License-Identifier: AGPL-3.0-or-later */
 /* SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> */
 
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
-
 :root {
 	--bg: #f7f4ef;
 	--surface: #ffffff;
@@ -18,22 +16,64 @@
 	--radius-lg: 22px;
 	--radius-md: 14px;
 	--radius-sm: 8px;
-	--font-display: "Space Grotesk", "Atkinson", sans-serif;
-	--font-body: "Atkinson", sans-serif;
+	--font-display: "Euclid Circular A", sans-serif;
+	--font-body: "Euclid Circular A", sans-serif;
 	--tracking-tight: -0.02em;
 }
 @font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-regular.otf") format("opentype");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-regular-italic.otf") format("opentype");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-medium-italic.otf") format("opentype");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-semibold.otf") format("opentype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-semibold-italic.otf") format("opentype");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-bold.otf") format("opentype");
 	font-weight: 700;
 	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url("/fonts/euclid-circular-a-bold-italic.otf") format("opentype");
+	font-weight: 700;
+	font-style: italic;
 	font-display: swap;
 }
 * {

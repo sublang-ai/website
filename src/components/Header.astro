@@ -3,14 +3,21 @@
 // SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
 
 import { SITE_TITLE } from '../consts';
-import Wordmark from '../assets/brand/wordmark.svg';
+import Wordmark from '../assets/brand/wordmark-color-light-bg.png';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header class="site-header">
 	<nav>
 		<a class="logo" href="/" aria-label={SITE_TITLE}>
-			<img src={Wordmark.src} alt={`${SITE_TITLE} wordmark`} loading="eager" />
+			<img
+				src={Wordmark.src}
+				width={Wordmark.width}
+				height={Wordmark.height}
+				alt={`${SITE_TITLE} wordmark`}
+				loading="eager"
+				decoding="async"
+			/>
 		</a>
 		<div class="internal-links" aria-label="Primary navigation">
 			<HeaderLink href="/">Home</HeaderLink>
@@ -62,8 +69,9 @@ import HeaderLink from './HeaderLink.astro';
 		border-bottom: none;
 	}
 	.logo img {
-		height: 28px;
+		height: 30px;
 		width: auto;
+		border-radius: 0;
 	}
 	.internal-links {
 		display: flex;

@@ -1,10 +1,2 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
-
-# Temporary redirect: home page to GitHub (302 preserves SEO for sublang.xyz)
-/  https://github.com/sublang-xyz  302
-/index.html  https://github.com/sublang-xyz  302
-
-# Redirect old blog URLs to engineering
-/blog  /engineering  301
-/blog/*  /engineering  301

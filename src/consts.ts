@@ -6,3 +6,8 @@
 
 export const SITE_TITLE = 'Sublang';
 export const SITE_DESCRIPTION = 'Sublang - Exploring programming languages and software development';
+
+export const SITE_AUTHOR = {
+	name: 'Alphabet',
+	email: 'abc@sublang.xyz',
+};

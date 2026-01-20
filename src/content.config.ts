@@ -15,6 +15,12 @@ const ref = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
 			categories: z.array(z.string()).optional(),
+			author: z
+				.object({
+					name: z.string(),
+					email: z.string().email().optional(),
+				})
+				.optional(),
 		}),
 });
 

@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
-<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz> -->
 
 # STYLE: Authoring Conventions
 
@@ -59,21 +59,21 @@ Each source code file (including specs) shall include SPDX headers using the app
 
 ```typescript
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
+// SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz>
 ```
 
 **CSS:**
 
 ```css
 /* SPDX-License-Identifier: AGPL-3.0-or-later */
-/* SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> */
+/* SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz> */
 ```
 
 **Markdown (specs):**
 
 ```markdown
 <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
-<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz> -->
 ```
 
 ### STYLE-011
@@ -84,7 +84,7 @@ Each content file (README, docs, blogs) shall include SPDX headers:
 
 ```markdown
 <!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
-<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz> -->
 ```
 
 **Markdown/MDX with YAML frontmatter (Astro content collections):**
@@ -92,7 +92,7 @@ Each content file (README, docs, blogs) shall include SPDX headers:
 ```markdown
 ---
 # SPDX-License-Identifier: CC-BY-SA-4.0
-# SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
+# SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz>
 title: 'Example'
 ---
 ```

@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
-<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz> -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz> -->
 
 # GIT: Git Workflow
 
@@ -23,4 +23,4 @@ The commit body shall explain what/why (not how), wrap at 72 chars, and use bull
 
 When AI assists in authoring a commit, the message shall include a `Co-authored-by` trailer in the format `<model> (<role>) <email>`, where `<role>` is one of `coder|reviewer|maintainer`.
 
-Example: `Co-authored-by: Claude Opus 4.5 (coder) <noreply@anthropic.com>`
+Example: `Co-authored-by: Claude Opus 4.5 (coder) <cligent@sublang.xyz>`

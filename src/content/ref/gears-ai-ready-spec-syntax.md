@@ -1,6 +1,6 @@
 ---
 # SPDX-License-Identifier: CC-BY-SA-4.0
-# SPDX-FileCopyrightText: 2026 SubLang International <https://github.com/sublang-xyz>
+# SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz>
 title: 'GEARS: the AI-Ready Spec Syntax'
 description: 'An introduction to GEARS, the specification syntax designed for AI-assisted development'
 pubDate: 2026-01-14
@@ -23,7 +23,7 @@ Specs are natural-language descriptions of system requirements and behaviors. In
 Specs are the new “source code”. We believe specs are essential to AI-era software development for two reasons:
 
 - Without clear specs, misunderstandings among humans and LLMs constantly exist. Specs are the natural-language media for human and AI developers to communicate.
-- There are always devisions of work in software even with the power of AI. Clear specs facilitate humans and LLMs to understand and reuse system components.
+- There are always divisions of work in software even with the power of AI. Clear specs facilitate humans and LLMs to understand and reuse system components.
 
 Specs are iterative. It is *not* a recall of waterfall model. Specs grow from scratch along with the code iteration by iteration.
 
@@ -72,7 +72,7 @@ EARS defines five patterns based on which keywords appear:
 | Optional feature | Where `<feature>`, the `<system>` shall `<response>` |
 | Unwanted behavior | If `<trigger>`, then the `<system>` shall `<response>` |
 
-GEARS collapses these into one unified pattern, where the distinctions emerge from which optional clauses are present. This abstraction reduces cognitive burdern and token cost for LLMs.
+GEARS collapses these into one unified pattern, where the distinctions emerge from which optional clauses are present. This abstraction reduces cognitive burden and token cost for LLMs.
 
 The "unwanted behavior" case deserves attention. EARS uses `If...then` to provide a visual signal that this is an edge case. GEARS drops this distinction. Structurally, error handling is just another trigger-response pair. The "unwantedness" lives in the semantics, not the syntax. This simplification reduces cognitive overhead and makes pattern-matching easier for AI.
 
@@ -103,11 +103,11 @@ The mobile phone shall have a mass of less than 150 grams.
 
 While no card is inserted, the ATM shall display "insert card to begin".
 
-When the cache exceeds 80% capacity, the eviction policy shall remove the least recently used entries until capacity falls below 60%.
-
 - Event-Driven: When `<trigger>`, the `<subject>` shall `<behavior>`.
 
 When the user selects mute, the audio controller shall suppress all output.
+
+When the cache exceeds 80% capacity, the eviction policy shall remove the least recently used entries until capacity falls below 60%.
 
 - Optional Feature: Where `<static precondition(s)>`, the `<subject>` shall `<behavior>`.
 

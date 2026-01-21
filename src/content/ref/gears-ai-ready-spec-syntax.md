@@ -186,5 +186,6 @@ The result is a spec syntax optimized for AI-powered development: **consistent e
 
 1. Mavin, A., Wilkinson, P., Harwood, A., & Novak, M. (2009). Easy Approach to Requirements Syntax (EARS). 17th IEEE International Requirements Engineering Conference, pp. 317–322. <https://doi.org/10.1109/RE.2009.9>
 2. Mavin, A. (2009). Easy Approach to Requirements Syntax (EARS). <https://alistairmavin.com/ears>
+3. North, D. (2006). Introducing BDD. <https://dannorth.net/introducing-bdd/>
 
-> AI Usage Statement: Claude Opus 4.5 and GPT-5.2 for polishing the language of the human-written full draft.
+> AI Usage Statement: Claude Opus 4.5 and GPT-5.2 used for language polishing only on the human-written full draft.

@@ -8,34 +8,34 @@ categories:
   - engineering
 ---
 
-Amazon's Kiro adopted the Easy Approach to Requirements Syntax (EARS) for its specification-driven development workflow. It popularized a practice idea: turn a vague prompt or context into a specification (spec) in a clear format, so both humans and agents can better understand.
+Amazon's Kiro uses the Easy Approach to Requirements Syntax (EARS) in its specification-driven development workflow. It popularizes a practice: turn a vague prompt or context into a specification (spec) in a clear format, so both humans and agents can better understand.
 
-The EARS was developed by Alistair Mavin and colleagues at Rolls-Royce and has become a widely adopted notation for writing clear, testable requirements. Its original paper won the 10-year most influential industry paper award in Requirements Engineering conference 2019.
+The EARS was developed by Alistair Mavin and colleagues at Rolls-Royce and has become a widely adopted notation for writing clear, testable requirements. Its original paper won the 10-year most influential industry paper award in the IEEE International Requirements Engineering Conference 2019.
 
-However, the notation was originally designed for high-level stakeholder requirements—not for the full spectrum of software specifications that modern development demands. Working with EARS in spec practice revealed friction points.
+However, the notation was originally designed for high-level stakeholder requirements—not for the full spectrum of software specifications (specs) that modern development demands. Working with EARS in spec practice revealed friction points.
 
 Therefore, we propose GEARS, generalized EARS or Generalized Expression for AI-Ready Specs. It extends EARS for the age of AI coding by preserving what made EARS successful while adapting the syntax for broader use in specs.
 
 ## What Are Specs
 
-Specs are natural-language descriptions of system requirements and behaviors. In a broader sense, specs can also describe the decisions, plans, and changes made to a system.
+Specs are natural-language descriptions of system requirements and behaviors. Specs should be versioned and maintain "eventual consistency" with code so that they become the primary source of truth for AI to understand the system. In a broader sense, specs can also describe the decisions, plans, and changes made to a system, though GEARS doesn't cover them as they are auxiliary and less frequently cited in prompts or contexts for AI.
 
-Specs are the new “source code”. We believe specs are essential to AI-era software development for two reasons:
+Specs are the new “source code” for human developers. We believe specs are essential to AI-era software development for two reasons:
 
 - Without clear specs, misunderstandings among humans and LLMs constantly exist. Specs are the natural-language media for human and AI developers to communicate.
 - There are always divisions of work in software even with the power of AI. Clear specs facilitate humans and LLMs to understand and reuse system components.
 
-Specs are iterative. It is *not* a recall of waterfall model. Specs grow from scratch along with the code iteration by iteration.
+Specs are iterative. It is *not* a return to the waterfall model. Specs grow from scratch along with the code iteration by iteration.
 
-Specs are AI-generative. It doesn't mean humans have to write every single line of specs. Usually human developers start with high-level and sometime vague intent and discuss with AI. Then AI can help specify, propose considerations, and fill in details. Finally, AI can write the specs in the right format.
+Specs can be AI-generated. It doesn't mean humans have to write every single line of specs. Usually human developers start with high-level and sometimes vague intent and discuss with AI. Then AI can help specify, propose considerations, and fill in details. Finally, AI can write the specs in the right format.
 
 ## Why Use GEARS
 
-AI needs consistency. LLMs perform better with predictable structure. A specification format acts as a protocol between human intent and AI execution. Without it, misunderstandings easily propagate across iterations and create volatility and risk.
+AI needs consistency. LLMs perform better with predictable structure. A spec format acts as a protocol between human intent and AI execution. Without it, misunderstandings easily propagate across iterations and create volatility and risk.
 
 Humans need it too. The bottleneck in AI coding is rarely the LLM’s capability—it's our ability to express what we want. A constrained syntax leads to clarity. You don't want to write a free-form prose; the structure helps us get precision.
 
-AI reduces the “best practice tax”. GEARS is intentionally lightweight and intuitive, without the need for heavy tooling or training. Formal specifications, comprehensive test cases, traceable requirements—all valuable, all expensive. But when AI drafts and humans review, the economics change.
+AI reduces the “best practice tax”. GEARS is intentionally lightweight and intuitive, without the need for heavy tooling or training. Formal specs, comprehensive test cases, traceable requirements—all valuable, all expensive. But when AI drafts and humans review, the cost-benefit ratio shifts dramatically.
 
 Test cases should use the same language. The original EARS was designed for requirements; testing frameworks use BDD-style Given-When-Then. Maintaining two mental models creates burden for LLMs. GEARS unifies both, expressed in the same syntax.
 
@@ -47,12 +47,12 @@ Brackets denote optional clauses.
 
 | Keyword | Purpose | Maps to GWT |
 | ------- | ------- | ----------- |
-| `Where` | Static precondition—configuration, feature flags, environment | Given (setup) |
-| `While` | Stateful precondition—a condition that must hold during execution | Given (state) |
-| `When` | Trigger—the event that initiates behavior | When |
-| `shall` | Required behavior—what the subject must do | Then |
+| Where | Static precondition—configuration, feature flags, environment | Given (setup) |
+| While | Stateful precondition—a condition that must hold during execution | Given (state) |
+| When | Trigger—the event that initiates behavior | When |
+| shall | Required behavior—what the subject must do | Then |
 
-EARS uses "the system shall..." because it targeted system-level requirements. GEARS replaces this with `<subject>`—any noun: system, component, service, agent, function, artifact. This enables specifications at all levels of decomposition.
+EARS uses "the system shall..." because it targeted system-level requirements. GEARS replaces this with `<subject>`—any noun: system, component, service, agent, function, artifact. This enables specs at all levels of decomposition.
 
 ### Comparison with EARS
 
@@ -68,22 +68,18 @@ EARS defines five patterns based on which keywords appear:
 
 GEARS collapses these into one unified pattern, where the distinctions emerge from which optional clauses are present. This abstraction reduces cognitive burden and token cost for LLMs.
 
-The "unwanted behavior" case deserves attention. EARS uses `If...then` to provide a visual signal that this is an edge case. GEARS drops this distinction. Structurally, error handling is just another trigger-response pair. The "unwantedness" lives in the semantics, not the syntax. This simplification reduces cognitive overhead and makes pattern-matching easier for AI.
+The "unwanted behavior" case deserves attention. EARS uses `If...then` to provide a visual signal that this is an edge case. GEARS drops this distinction. Structurally, error handling is just another trigger-response pair. The "unwantedness" lives in the semantics, not the syntax. GEARS prioritizes AI processing over human visual scanning.
 
-EARS uses `where` for optional features and `while` for states. GEARS preserves both keywords but clarifies their semantics:
+EARS uses "where" for optional features and "while" for states. GEARS preserves both keywords but clarifies their semantics:
 
-- **where** = static precondition (configuration, deployment environment, feature flag)
-- **while** = stateful precondition (runtime condition that may change)
+- "where" for static preconditions (configuration, deployment environment, feature flag);
+- "while" for stateful preconditions (runtime condition that may change).
 
 Example of the distinction:
 
-```text
-Where the deployment is production, when a request fails, the service shall retry with exponential backoff.
-```
+> Where the deployment is production, when a request fails, the service shall retry with exponential backoff.
 
-```text
-While the circuit breaker is open, when a request arrives, the service shall return a cached response.
-```
+> While the circuit breaker is open, when a request arrives, the service shall return a cached response.
 
 The first is configuration—it won't change during execution. The second is state—it may transition at any moment.
 
@@ -124,9 +120,9 @@ The first is configuration—it won't change during execution. The second is sta
 
   Translated to GEARS:
 
-  > Where the user is authenticated, while the session is active, when the user requests their profile, the API shall return the user's profile data.
+  > While the user is authenticated and the session is active, when the user requests their profile, the API shall return the user's profile data.
 
-## Tooling
+## Application
 
 To let LLM understand GEARS and use it for specs, simply put the following short text in your prompt or CLAUDE.md or AGENTS.md files.
 
@@ -173,24 +169,22 @@ specs/
 
 Spec files can be grouped into a directory hierarchy. Record files do not strictly follow GEARS.
 
-⭐ If you find this tool useful, welcome to star <https://github.com/sublang-xyz/IterOn>.
+⭐ If you find this tool useful, please star <https://github.com/sublang-xyz/IterOn>.
 
 ## Summary
 
 GEARS extends EARS with four adaptations:
 
 1. **Generalized subject**: Replace "the system" with any noun—system, component, agent, artifact.
-
 2. **Unified pattern**: One syntax covers all cases. No separate patterns for features, states, events, or errors.
-
-3. **Clarified preconditions**: `where` for static configuration, `while` for dynamic state.
-
+3. **Clarified preconditions**: Where for static configuration, While for dynamic state.
 4. **Test-case equivalence**: The syntax maps directly to Given-When-Then, eliminating the need for separate specification and testing languages.
 
-The result is a specification syntax optimized for AI-powered development: **consistent enough** for LLMs to parse reliably, **expressive enough** for humans to write naturally, and **unified enough** that specs and tests are one.
+The result is a spec syntax optimized for AI-powered development: **consistent enough** for LLMs to parse reliably, **expressive enough** for humans to write naturally, and **unified enough** that specs and tests are one.
 
 ## References
 
-Mavin, A. (2009). Easy Approach to Requirements Syntax (EARS). <https://alistairmavin.com/ears>
+1. Mavin, A., Wilkinson, P., Harwood, A., & Novak, M. (2009). Easy Approach to Requirements Syntax (EARS). 17th IEEE International Requirements Engineering Conference, pp. 317–322. <https://doi.org/10.1109/RE.2009.9>
+2. Mavin, A. (2009). Easy Approach to Requirements Syntax (EARS). <https://alistairmavin.com/ears>
 
 > AI Usage Statement: Claude Opus 4.5 and GPT-5.2 for polishing the language of the human-written full draft.

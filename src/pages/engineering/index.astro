@@ -65,6 +65,12 @@ const posts = (await getCollection('ref'))
 				color: var(--ink-muted);
 				font-size: 0.9rem;
 			}
+			.excerpt {
+				margin: 0.2rem 0 0;
+				color: var(--ink-soft);
+				font-size: 0.95rem;
+				line-height: 1.5;
+			}
 			@media (max-width: 720px) {
 				.post-grid {
 					gap: 1.2rem;
@@ -91,6 +97,7 @@ const posts = (await getCollection('ref'))
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
 									)}
 									<h4 class="title">{post.data.title}</h4>
+									<p class="excerpt">{post.data.description}</p>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>

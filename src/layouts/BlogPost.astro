@@ -12,9 +12,15 @@ import { SITE_AUTHOR, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'ref'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, author, xUrl, twitterUrl } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, author, xUrl, twitterUrl } =
+	Astro.props;
 const postAuthor = author ?? SITE_AUTHOR;
 const postImage = heroImage;
+const postImageAlt = heroImageAlt ?? title;
+const heroImageWidth = 1020;
+const heroImageHeight = postImage
+	? Math.round((postImage.height / postImage.width) * heroImageWidth)
+	: 0;
 const commentUrl = xUrl ?? twitterUrl ?? null;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? canonicalURL.origin;
@@ -49,6 +55,7 @@ const articleSchema = {
 			title={title}
 			description={description}
 			image={postImage}
+			imageAlt={postImageAlt}
 			article={{ pubDate, updatedDate }}
 		/>
 		<meta name="author" content={postAuthor.name} />
@@ -66,9 +73,18 @@ const articleSchema = {
 				padding: 2.6rem;
 				box-shadow: var(--shadow-soft);
 			}
+			.hero-image {
+				margin: -2.6rem -2.6rem 2rem;
+				padding: 1.4rem 2rem 1.6rem;
+				border-bottom: 1px solid var(--line);
+				background:
+					linear-gradient(135deg, rgba(247, 244, 239, 0.9), rgba(255, 255, 255, 0.95)),
+					var(--surface);
+			}
 			.hero-image img {
 				display: block;
 				width: 100%;
+				height: auto;
 				border-radius: var(--radius-md);
 			}
 			.prose {
@@ -109,6 +125,10 @@ const articleSchema = {
 				.article {
 					padding: 1.8rem;
 				}
+				.hero-image {
+					margin: -1.8rem -1.8rem 1.6rem;
+					padding: 1rem;
+				}
 			}
 		</style>
 	</head>
@@ -119,7 +139,12 @@ const articleSchema = {
 			<article class="article">
 				{heroImage && (
 					<div class="hero-image">
-						<Image width={1020} height={510} src={heroImage} alt="" />
+						<Image
+							width={heroImageWidth}
+							height={heroImageHeight}
+							src={heroImage}
+							alt={postImageAlt}
+						/>
 					</div>
 				)}
 				<div class="prose">

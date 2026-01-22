@@ -94,7 +94,14 @@ const posts = (await getCollection('ref'))
 							<li class="post-card">
 								<a href={`/ref/${post.id}/`}>
 									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+										<Image
+											width={720}
+											height={Math.round(
+												(post.data.heroImage.height / post.data.heroImage.width) * 720,
+											)}
+											src={post.data.heroImage}
+											alt={post.data.heroImageAlt ?? post.data.title}
+										/>
 									)}
 									<h4 class="title">{post.data.title}</h4>
 									<p class="excerpt">{post.data.description}</p>

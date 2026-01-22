@@ -14,6 +14,7 @@ const ref = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
+			heroImageAlt: z.string().optional(),
 			categories: z.array(z.string()).optional(),
 			xUrl: z.string().url().optional(),
 			twitterUrl: z.string().url().optional(),

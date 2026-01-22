@@ -12,6 +12,7 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	imageAlt?: string;
 	article?: {
 		pubDate: Date;
 		updatedDate?: Date;
@@ -21,7 +22,7 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? canonicalURL.origin;
 
-const { title, description, image, article } = Astro.props;
+const { title, description, image, imageAlt, article } = Astro.props;
 const ogType = article ? 'article' : 'website';
 const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
 const gaId = (import.meta.env.PUBLIC_GA_ID ?? SITE_GA_ID)?.trim();
@@ -109,7 +110,7 @@ const structuredData = {
 {image && (
 	<>
 		<meta property="og:image" content={new URL(image.src, Astro.url)} />
-		<meta property="og:image:alt" content={pageTitle} />
+		<meta property="og:image:alt" content={imageAlt ?? pageTitle} />
 		<meta property="og:image:width" content={String(image.width)} />
 		<meta property="og:image:height" content={String(image.height)} />
 	</>
@@ -134,7 +135,7 @@ const structuredData = {
 {image && (
 	<>
 		<meta name="twitter:image" content={new URL(image.src, Astro.url)} />
-		<meta name="twitter:image:alt" content={pageTitle} />
+		<meta name="twitter:image:alt" content={imageAlt ?? pageTitle} />
 	</>
 )}
 

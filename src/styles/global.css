@@ -148,6 +148,10 @@ p {
 .prose p {
 	margin-bottom: 1.8rem;
 }
+.prose ul,
+.prose ol {
+	margin: 0 0 1.8rem 1.4rem;
+}
 textarea,
 input {
 	font-size: 16px;

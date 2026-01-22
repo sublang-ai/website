@@ -12,9 +12,10 @@ import { SITE_AUTHOR, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'ref'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, author } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, author, xUrl, twitterUrl } = Astro.props;
 const postAuthor = author ?? SITE_AUTHOR;
 const postImage = heroImage;
+const commentUrl = xUrl ?? twitterUrl ?? null;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? canonicalURL.origin;
 
@@ -75,6 +76,11 @@ const articleSchema = {
 				margin: 2rem auto 0;
 				color: var(--ink-soft);
 			}
+			.post-actions {
+				display: flex;
+				justify-content: center;
+				margin-top: 2.5rem;
+			}
 			.title {
 				margin-bottom: 1.5rem;
 				line-height: 1.1;
@@ -132,6 +138,18 @@ const articleSchema = {
 						<hr />
 					</div>
 					<slot />
+					{commentUrl && (
+						<div class="post-actions">
+							<a
+								class="button primary"
+								href={commentUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Comment on X
+							</a>
+						</div>
+					)}
 				</div>
 			</article>
 		</main>

@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz>
 
+import ConsentBanner from './ConsentBanner.astro';
+
 const today = new Date();
 ---
 
@@ -19,6 +21,7 @@ const today = new Date();
 	</div>
 	<div class="footer-meta">&copy; {today.getFullYear()} SubLang International.</div>
 </footer>
+<ConsentBanner />
 <style>
 	.site-footer {
 		padding: 3.5rem 2rem 4rem;

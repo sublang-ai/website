@@ -1,0 +1,86 @@
+---
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz>
+
+import { SITE_GA_CONSENT_KEY, SITE_GA_ID } from '../consts';
+
+const gaId = (import.meta.env.PUBLIC_GA_ID ?? SITE_GA_ID)?.trim() ?? '';
+const gaEnabled = gaId.length > 0;
+const consentKey = SITE_GA_CONSENT_KEY;
+const consentKeyLiteral = JSON.stringify(consentKey);
+---
+
+{gaEnabled && (
+	<>
+		<div class="consent-banner" data-ga-consent hidden role="dialog" aria-live="polite">
+			<div class="consent-card">
+				<p class="consent-text">Help us improve your experience. Allow anonymous analytics.</p>
+				<div class="consent-actions">
+					<button class="button primary" type="button" data-ga-accept>Yes</button>
+					<button class="button" type="button" data-ga-reject>No</button>
+				</div>
+			</div>
+		</div>
+		<script
+			is:inline
+			set:html={`(function(){var consentKey=${consentKeyLiteral};var banner=document.querySelector('[data-ga-consent]');var acceptButton=document.querySelector('[data-ga-accept]');var rejectButton=document.querySelector('[data-ga-reject]');function getConsent(){try{return localStorage.getItem(consentKey);}catch(err){return null;}}function setConsent(value){try{localStorage.setItem(consentKey,value);}catch(err){}}function hideBanner(){if(banner){banner.hidden=true;}}function showBanner(){if(banner){banner.hidden=false;}}function updateConsent(value){if(!window.gtag){return;}var status=value==='granted'?'granted':'denied';window.gtag('consent','update',{ad_storage:status,analytics_storage:status,ad_user_data:status,ad_personalization:status});}var stored=getConsent();if(stored==='granted'||stored==='denied'){hideBanner();return;}showBanner();if(acceptButton){acceptButton.addEventListener('click',function(){setConsent('granted');updateConsent('granted');hideBanner();});}if(rejectButton){rejectButton.addEventListener('click',function(){setConsent('denied');updateConsent('denied');hideBanner();});}})();`}
+		/>
+	</>
+)}
+
+<style>
+	.consent-banner {
+		position: fixed;
+		inset: auto 1.25rem 1.25rem auto;
+		z-index: 50;
+		display: flex;
+		justify-content: flex-end;
+		max-width: calc(100vw - 2.5rem);
+	}
+	.consent-card {
+		width: min(520px, calc(100vw - 2.5rem));
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.85rem;
+		padding: 1rem 1.4rem;
+		border-radius: var(--radius-md);
+		border: 1px solid rgba(21, 22, 26, 0.08);
+		background:
+			linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(247, 244, 239, 0.96)),
+			var(--surface);
+		box-shadow: 0 18px 40px rgba(21, 22, 26, 0.12);
+		backdrop-filter: blur(12px);
+	}
+	.consent-text {
+		margin: 0;
+		color: var(--ink-soft);
+		font-size: 0.92rem;
+	}
+	.consent-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		flex-wrap: wrap;
+	}
+	.consent-actions .button {
+		padding: 0.55rem 1.05rem;
+		font-size: 0.8rem;
+		letter-spacing: 0.12em;
+	}
+	.consent-actions .button.primary {
+		box-shadow: 0 10px 24px rgba(21, 22, 26, 0.18);
+	}
+	@media (max-width: 720px) {
+		.consent-banner {
+			inset: auto 1rem 1rem 1rem;
+			justify-content: center;
+			max-width: none;
+		}
+		.consent-card {
+			width: 100%;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

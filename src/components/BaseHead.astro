@@ -6,7 +6,7 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_GA_CONSENT_KEY, SITE_GA_ID, SITE_TITLE } from '../consts';
 
 interface Props {
 	title: string;
@@ -24,6 +24,10 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? canonicalURL.origin
 const { title, description, image, article } = Astro.props;
 const ogType = article ? 'article' : 'website';
 const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
+const gaId = (import.meta.env.PUBLIC_GA_ID ?? SITE_GA_ID)?.trim();
+const gaEnabled = Boolean(gaId);
+const gaIdLiteral = JSON.stringify(gaId ?? '');
+const consentKeyLiteral = JSON.stringify(SITE_GA_CONSENT_KEY);
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@graph': [
@@ -68,6 +72,17 @@ const structuredData = {
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+
+{gaEnabled && (
+	<>
+		<!-- Google Analytics 4 -->
+		<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+		<script
+			is:inline
+			set:html={`(function(){var gaId=${gaIdLiteral};if(!gaId){return;}window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments);}window.gtag=window.gtag||gtag;var consent='denied';try{var stored=localStorage.getItem(${consentKeyLiteral});if(stored==='granted'){consent='granted';}}catch(err){}gtag('consent','default',{ad_storage:consent,analytics_storage:consent,ad_user_data:consent,ad_personalization:consent});gtag('js',new Date());gtag('config',gaId);})();`}
+		/>
+	</>
+)}
 
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/euclid-circular-a-regular.otf" as="font" type="font/otf" crossorigin />

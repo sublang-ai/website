@@ -4,6 +4,7 @@
 title: 'GEARS: the AI-Ready Spec Syntax'
 description: 'An introduction to Generalized EARS, the specification syntax designed for AI-powered software development'
 pubDate: 2026-01-14
+xUrl: 'https://x.com/sublang_xyz/status/2014217557356445795'
 categories:
   - engineering
 ---
@@ -41,9 +42,12 @@ Test cases should use the same language. The original EARS was designed for requ
 
 ## The GEARS Syntax
 
-> [Where `<static precondition(s)>`] [While `<stateful precondition(s)>`] [When `<trigger>`] The `<subject>` shall `<behavior>`.
-
-Brackets denote optional clauses.
+```markdown
+[Where `<static precondition(s)>`]
+[While `<stateful precondition(s)>`]
+[When `<trigger>`]
+The `<subject>` shall `<behavior>`
+```
 
 | Keyword | Purpose | Maps to GWT |
 | ------- | ------- | ----------- |
@@ -52,13 +56,11 @@ Brackets denote optional clauses.
 | When | Trigger—the event that initiates behavior | When |
 | shall | Required behavior—what the subject must do | Then |
 
-EARS uses "the system shall..." because it targeted system-level requirements. GEARS replaces this with `<subject>`—any noun: system, component, service, agent, function, artifact. This enables specs at all levels of decomposition.
-
-### Comparison with EARS
+Brackets denote optional clauses. EARS uses "the system shall..." because it targeted system-level requirements. GEARS replaces this with `<subject>`—any noun: system, component, service, agent, function, artifact. This enables specs at all levels of decomposition.
 
 EARS defines five patterns based on which keywords appear:
 
-| Pattern | EARS Syntax |
+| Pattern | EARS Syntax (collapsed by GEARS) |
 | ------- | ----------- |
 | Ubiquitous | The `<system>` shall `<response>` |
 | State-driven | While `<precondition>`, the `<system>` shall `<response>` |
@@ -75,10 +77,10 @@ EARS uses "where" for optional features and "while" for states. GEARS preserves 
 - "where" for static preconditions (configuration, deployment environment, feature flag);
 - "while" for stateful preconditions (runtime condition that may change).
 
-Example of the distinction:
+Examples of the distinction:
 
 > Where the deployment is production, when a request fails, the service shall retry with exponential backoff.
-
+>
 > While the circuit breaker is open, when a request arrives, the service shall return a cached response.
 
 The first is configuration—it won't change during execution. The second is state—it may transition at any moment.
@@ -96,7 +98,7 @@ The first is configuration—it won't change during execution. The second is sta
 - Event-Driven: When `<trigger>`, the `<subject>` shall `<behavior>`.
 
   > When the user selects mute, the audio controller shall suppress all output.
-
+  >
   > When the cache exceeds 80% capacity, the eviction policy shall remove the least recently used entries until capacity falls below 60%.
 
 - Optional Feature: Where `<static precondition(s)>`, the `<subject>` shall `<behavior>`.
@@ -111,11 +113,15 @@ The first is configuration—it won't change during execution. The second is sta
 
   > When an invalid credit card number is entered, the payment form shall display "please re-enter credit card details".
 
+- Negative Expression
+
+  > When an unauthenticated request arrives, the API shall not include stack traces in the response.
+
 - Test Cases
 
-  > Given the user is authenticated
-  >   And the session is active
-  > When the user requests their profile
+  > Given the user is authenticated\
+  > And the session is active\
+  > When the user requests their profile\
   > Then the API returns the user's profile data
 
   Translated to GEARS:

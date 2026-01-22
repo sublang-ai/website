@@ -12,7 +12,14 @@ const consentKeyLiteral = JSON.stringify(consentKey);
 
 {gaEnabled && (
 	<>
-		<div class="consent-banner" data-ga-consent hidden role="dialog" aria-live="polite">
+		<div
+			class="consent-banner"
+			data-ga-consent
+			hidden
+			style="display: none"
+			role="dialog"
+			aria-live="polite"
+		>
 			<div class="consent-card">
 				<p class="consent-text">Help us improve your experience. Allow anonymous analytics.</p>
 				<div class="consent-actions">
@@ -23,7 +30,7 @@ const consentKeyLiteral = JSON.stringify(consentKey);
 		</div>
 		<script
 			is:inline
-			set:html={`(function(){var consentKey=${consentKeyLiteral};var banner=document.querySelector('[data-ga-consent]');var acceptButton=document.querySelector('[data-ga-accept]');var rejectButton=document.querySelector('[data-ga-reject]');function getConsent(){try{return localStorage.getItem(consentKey);}catch(err){return null;}}function setConsent(value){try{localStorage.setItem(consentKey,value);}catch(err){}}function hideBanner(){if(banner){banner.hidden=true;}}function showBanner(){if(banner){banner.hidden=false;}}function updateConsent(value){if(!window.gtag){return;}var status=value==='granted'?'granted':'denied';window.gtag('consent','update',{ad_storage:status,analytics_storage:status,ad_user_data:status,ad_personalization:status});}var stored=getConsent();if(stored==='granted'||stored==='denied'){hideBanner();return;}showBanner();if(acceptButton){acceptButton.addEventListener('click',function(){setConsent('granted');updateConsent('granted');hideBanner();});}if(rejectButton){rejectButton.addEventListener('click',function(){setConsent('denied');updateConsent('denied');hideBanner();});}})();`}
+			set:html={`(function(){var consentKey=${consentKeyLiteral};var banner=document.querySelector('[data-ga-consent]');var acceptButton=document.querySelector('[data-ga-accept]');var rejectButton=document.querySelector('[data-ga-reject]');function getConsent(){try{return localStorage.getItem(consentKey);}catch(err){return null;}}function setConsent(value){try{localStorage.setItem(consentKey,value);}catch(err){}}function hideBanner(){if(banner){banner.hidden=true;banner.style.display='none';}}function showBanner(){if(banner){banner.hidden=false;banner.style.display='';}}function updateConsent(value){if(!window.gtag){return;}var status=value==='granted'?'granted':'denied';window.gtag('consent','update',{ad_storage:status,analytics_storage:status,ad_user_data:status,ad_personalization:status});}var stored=getConsent();if(stored==='granted'||stored==='denied'){hideBanner();return;}showBanner();if(acceptButton){acceptButton.addEventListener('click',function(){setConsent('granted');updateConsent('granted');hideBanner();});}if(rejectButton){rejectButton.addEventListener('click',function(){setConsent('denied');updateConsent('denied');hideBanner();});}})();`}
 		/>
 	</>
 )}

@@ -163,7 +163,7 @@ To apply GEARS to your project, we've created a tool to help you get started.
 
 ```sh
 npm install -g @sublang-xyz/iteron
-iteron init
+iteron scaffold
 ```
 
 Running the above, you will get a `specs` folder for scaffolding:

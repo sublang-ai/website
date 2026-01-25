@@ -18,6 +18,8 @@ const ref = defineCollection({
 			categories: z.array(z.string()).optional(),
 			xUrl: z.string().url().optional(),
 			twitterUrl: z.string().url().optional(),
+			devtoUrl: z.string().url().optional(),
+			mediumUrl: z.string().url().optional(),
 			author: z
 				.object({
 					name: z.string(),

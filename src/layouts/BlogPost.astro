@@ -12,8 +12,19 @@ import { SITE_AUTHOR, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'ref'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, author, xUrl, twitterUrl } =
-	Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	heroImageAlt,
+	author,
+	xUrl,
+	twitterUrl,
+	devtoUrl,
+	mediumUrl,
+} = Astro.props;
 const postAuthor = author ?? SITE_AUTHOR;
 const postImage = heroImage;
 const postImageAlt = heroImageAlt ?? title;
@@ -21,7 +32,24 @@ const heroImageWidth = 1020;
 const heroImageHeight = postImage
 	? Math.round((postImage.height / postImage.width) * heroImageWidth)
 	: 0;
-const commentUrl = xUrl ?? twitterUrl ?? null;
+const primaryXUrl = xUrl ?? twitterUrl ?? null;
+const postCommentLinks = [
+	...(primaryXUrl ? [{ label: 'X', url: primaryXUrl, platform: 'x' }] : []),
+	...(devtoUrl ? [{ label: 'Dev.to', url: devtoUrl, platform: 'devto' }] : []),
+	...(mediumUrl ? [{ label: 'Medium', url: mediumUrl, platform: 'medium' }] : []),
+];
+
+const iconMap = {
+	x: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path fill="currentColor" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/>
+</svg>`,
+	devto: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path fill="currentColor" d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.3zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 6.38-1.8 6.68z"/>
+</svg>`,
+	medium: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path fill="currentColor" d="M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z"/>
+</svg>`,
+};
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? canonicalURL.origin;
 
@@ -94,8 +122,53 @@ const articleSchema = {
 			}
 			.post-actions {
 				display: flex;
+				flex-wrap: wrap;
 				justify-content: center;
+				gap: 1rem;
 				margin-top: 2.5rem;
+				padding: 1.1rem 1.4rem;
+				border-radius: var(--radius-md);
+				border: 1px solid var(--line);
+				background:
+					linear-gradient(135deg, rgba(137, 15, 188, 0.08), rgba(255, 255, 255, 0.95)),
+					var(--surface);
+			}
+			.post-actions-label {
+				font-family: var(--font-body);
+				font-size: 1em;
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				color: var(--ink);
+			}
+			.post-action-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.75rem;
+				font-family: var(--font-body);
+				font-size: 1rem;
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				color: var(--ink);
+				text-decoration: none;
+				line-height: 1;
+				border-bottom: 2px solid var(--line);
+				padding-bottom: 0.15rem;
+				transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+			}
+			.post-action-link:hover {
+				color: var(--accent);
+				border-color: var(--accent);
+				transform: translateY(-1px);
+			}
+			.post-action-icon {
+				display: inline-flex;
+				width: 1.6em;
+				height: 1.6em;
+			}
+			.post-action-icon svg {
+				display: block;
+				width: 100%;
+				height: 100%;
 			}
 			.title {
 				margin-bottom: 1.5rem;
@@ -163,16 +236,26 @@ const articleSchema = {
 						<hr />
 					</div>
 					<slot />
-					{commentUrl && (
+					{postCommentLinks.length > 0 && (
 						<div class="post-actions">
-							<a
-								class="button primary"
-								href={commentUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Comment on X
-							</a>
+							<span class="post-actions-label">Comment on</span>
+							{postCommentLinks.map((link) => {
+								const iconMarkup = iconMap[link.platform];
+								return (
+									<a
+										class="post-action-link"
+										href={link.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={`Comment on ${link.label}`}
+									>
+										{iconMarkup && (
+											<span class="post-action-icon" set:html={iconMarkup}></span>
+										)}
+										<span class="sr-only">{link.label}</span>
+									</a>
+								);
+							})}
 						</div>
 					)}
 				</div>

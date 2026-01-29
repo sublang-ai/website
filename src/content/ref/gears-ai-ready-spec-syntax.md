@@ -6,7 +6,6 @@ description: 'An introduction to Generalized EARS, the specification syntax desi
 pubDate: 2026-01-14
 heroImage: ../../assets/gears-hero.png
 heroImageAlt: 'Diagram of the GEARS specification lifecycle'
-xUrl: 'https://x.com/sublang_xyz/status/2014217557356445795'
 devtoUrl: 'https://dev.to/sublang/gears-the-spec-syntax-that-makes-ai-coding-actually-work-4f3f'
 mediumUrl: 'https://medium.com/sublang/generalized-ears-the-ai-ready-spec-syntax-11ba36a37165'
 categories:

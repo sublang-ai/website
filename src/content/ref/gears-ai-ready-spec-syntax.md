@@ -136,7 +136,7 @@ The first is configuration—it won't change during execution. The second is sta
 To let LLM understand GEARS and use it for specs, simply put the following short text in your prompt or CLAUDE.md or AGENTS.md files.
 
 ```markdown
-Each spec shall use the [GEARS](https://sublang.xyz/ref/gears-ai-ready-spec-syntax) pattern:
+Each spec shall use the [GEARS](https://sublang.ai/ref/gears-ai-ready-spec-syntax) pattern:
 
 [Where `<static precondition(s)>`] [While `<stateful precondition(s)>`] [When `<trigger>`] The `<subject>` shall `<behavior>`.
 

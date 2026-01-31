@@ -3,7 +3,7 @@
 
 # SubLang Website
 
-Official website for [SubLang](https://sublang.xyz) — built with [Astro](https://astro.build).
+Official website for [SubLang](https://sublang.ai) — built with [Astro](https://astro.build).
 
 ## Development
 

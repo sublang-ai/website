@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
-<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.xyz> -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.ai> -->
 
 # SubLang Website
 

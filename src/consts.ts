@@ -6,7 +6,7 @@
 
 export const SITE_TITLE = 'Sublang';
 export const SITE_DESCRIPTION = 'Sublang - Exploring programming languages and software development';
-export const SITE_GA_ID = 'G-85E8CW96SR';
+export const SITE_GA_ID = 'G-WTFHSG322N';
 export const SITE_GA_CONSENT_KEY = 'sublang-ga-consent';
 
 export const SITE_AUTHOR = {

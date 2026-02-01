@@ -4,8 +4,8 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Sublang';
-export const SITE_DESCRIPTION = 'Sublang - Exploring programming languages and software development';
+export const SITE_TITLE = 'SubLang';
+export const SITE_DESCRIPTION = 'SubLang - Exploring the linguistic foundation for agentic AI';
 export const SITE_GA_ID = 'G-WTFHSG322N';
 export const SITE_GA_CONSENT_KEY = 'sublang-ga-consent';
 

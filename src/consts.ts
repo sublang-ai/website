@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.ai>
+// SPDX-FileCopyrightText: 2026 SubLang International <https://sublang.ai>
 
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.

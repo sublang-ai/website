@@ -1,6 +1,6 @@
 ---
 # SPDX-License-Identifier: CC-BY-SA-4.0
-# SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.ai>
+# SPDX-FileCopyrightText: 2026 SubLang International <https://sublang.ai>
 title: 'GEARS: the AI-Ready Spec Syntax'
 description: 'An introduction to Generalized EARS, the specification syntax designed for AI-powered software development'
 pubDate: 2026-01-14

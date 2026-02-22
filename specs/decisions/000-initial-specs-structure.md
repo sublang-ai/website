@@ -13,7 +13,7 @@ Projects need a standardized structure and format for specifications to support 
 
 ## Decision
 
-Use `iteron scaffold` to create:
+Use `boss scaffold` to create:
 
 ```text
 specs/

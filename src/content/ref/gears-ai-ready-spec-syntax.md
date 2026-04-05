@@ -161,7 +161,7 @@ Test specs shall use the same pattern, mapping Given-When-Then:
 To apply GEARS to your project, we've created a tool to help you get started.
 
 ```sh
-npm install -g @sublang/boss
+npm install -g @sublang/spex
 spex scaffold
 ```
 
@@ -178,7 +178,7 @@ specs/
 
 Spec files can be grouped into a directory hierarchy. Record files do not strictly follow GEARS.
 
-⭐ If you find this tool useful, please star <https://github.com/sublang-ai/boss>.
+⭐ If you find this tool useful, please star <https://github.com/sublang-ai/spex>.
 
 ## Summary
 

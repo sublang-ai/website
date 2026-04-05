@@ -162,7 +162,7 @@ To apply GEARS to your project, we've created a tool to help you get started.
 
 ```sh
 npm install -g @sublang/boss
-boss scaffold
+spex scaffold
 ```
 
 Running the above, you will get a `specs` folder for scaffolding:
@@ -178,7 +178,7 @@ specs/
 
 Spec files can be grouped into a directory hierarchy. Record files do not strictly follow GEARS.
 
-⭐ If you find this tool useful, please star <https://github.com/sublang-dev/boss>.
+⭐ If you find this tool useful, please star <https://github.com/sublang-ai/boss>.
 
 ## Summary
 

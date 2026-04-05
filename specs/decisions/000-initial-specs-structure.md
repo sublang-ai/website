@@ -13,7 +13,7 @@ Projects need a standardized structure and format for specifications to support 
 
 ## Decision
 
-Use `boss scaffold` to create:
+Use `spex scaffold` to create:
 
 ```text
 specs/
